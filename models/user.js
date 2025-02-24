@@ -28,6 +28,10 @@ export default (sequelize) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    role: {
+      type: DataTypes.ENUM('admin', 'user'),
+      defaultValue: 'user'
     }
   }, {
     sequelize,
