@@ -26,6 +26,10 @@ export default (sequelize) => {
 
     Product.associate = (models) => {
       Product.belongsTo(models.Category, { foreignKey: 'categoryId'});
+      Product.belongsToMany(models.Sale, {
+        through: models.SaleProduct,
+        foreignKey: 'productId'
+      });
     }
 
     return Product;
