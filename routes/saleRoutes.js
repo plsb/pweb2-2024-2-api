@@ -8,14 +8,15 @@ import {
   updateSale,
   deleteSale,
 } from '../controllers/saleController.js';
+import { authenticateToken } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.post('/sales', createSale);
-router.get('/sales', getAllSales);
-router.get('/sales/search', getSalesByDate);
-router.get('/sales/:id', getSaleById);
-router.put('/sales/:id', updateSale);
-router.delete('/sales/:id', deleteSale);
+router.post('/sales', authenticateToken, createSale);
+router.get('/sales', authenticateToken, getAllSales);
+router.get('/sales/search', authenticateToken, getSalesByDate);
+router.get('/sales/:id', authenticateToken, getSaleById);
+router.put('/sales/:id', authenticateToken, updateSale);
+router.delete('/sales/:id',authenticateToken, deleteSale);
 
 export default router;
